@@ -1,0 +1,38 @@
+{% extends 'AppProyecto/home.html' %}
+
+{% block content %}
+
+<br>
+<br>
+
+
+
+
+
+<div class="container text-center">
+    <h1>Auto</h1>
+</div>
+
+<br>
+
+<div class="container text-center">
+    <div class="row">
+            {% for auto in autos %}
+            <div class="col-sm-6 align-items-center">
+                <div class="card-body">
+                <img src="{{auto.imagenArticulo.url}}" class="" width="100px">
+                {{auto.titulo}}
+                <a href="{% url 'auto' auto.id %}"><i class="bi bi-eye"></i></a>
+                {% if user.id == auto.usuario.id %}
+                <br>
+                <br>
+                <br>
+                <br>
+                {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
