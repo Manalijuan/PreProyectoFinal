@@ -1,0 +1,37 @@
+{% extends 'AppProyecto/home.html' %}
+{% block content %}
+<br>
+<br>
+<div class="container">
+<p><h4>{{auto.titulo}}</h4></p>
+{% if auto.imagenArticulo %}
+    <p><img src="{{auto.imagenArticulo.url}}" alt=""></p>
+{% endif %}
+<p>Marca: {{auto.marca}}</p>
+<p>Modelo: {{auto.modelo}}</p>
+<p>Descripción: {{auto.descripcion}}</p>
+<p>Año: {{auto.year}}</p>
+<p>Precio(US$): {{auto.precio}}</p>
+<p>Teléfono de Contacto: {{auto.telefonoContacto}}</p>
+<p>Email de Contacto: {{auto.emailContacto}}</p>
+</div>
+<br>
+<br>
+<div class="container">
+    <h4>Comentarios...</h4>
+    <br>
+    <div class="container">
+    {% if not auto.comentarios.all %}
+        No han comentado este auto
+    {% else %}
+        {% for comentario in auto.comentarios.all %}
+        <p><strong>{{comentario.nombre}}</strong></p>
+        <p>{{comentario.mensaje}}</p>
+        <p><small>{{comentario.fechaComentario}}</small></p>
+        <hr>
+        {% endfor %}
+    {% endif %}
+    <a href="{% url 'comentario' auto.pk %}">Agrega un Comentario</a>
+</div>
+<br>
+{% endblock %}
